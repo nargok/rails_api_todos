@@ -46,7 +46,15 @@ RSpec.describe 'Todo API', type: :request do
   end
 
   describe 'POST /todos' do
+    let(:valid_attributes) { { title: 'learn elm', created_by: '1' } }
 
+    context 'when the request is valid' do
+      before { post '/todos', params: valid_attributes }
+
+      it 'creates a todo' do
+        expect(json['title']).to eq('learn elm')
+      end
+    end
   end
 
 end
